@@ -13,9 +13,9 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRect(
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
         child: Container(
-          color: Colors.white.withOpacity(0.85),
+          color: Colors.white.withOpacity(0.8),
           height: kBottomNavigationBarHeight,
           width: MediaQuery.of(context).size.width,
           child: BlocBuilder<SelectedHomeTabCubit, SelectedHomeTab>(

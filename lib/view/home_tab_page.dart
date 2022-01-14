@@ -36,11 +36,9 @@ class HomeTabPage extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<SelectedHomeTabCubit, SelectedHomeTab>(
           builder: (context, state) {
-            return Column(
+            return Stack(
               children: [
-                Expanded(
-                  child: _selectedPage(state),
-                ),
+                _selectedPage(state),
                 const Positioned(
                   bottom: 0,
                   child: BottomNavBar(),
