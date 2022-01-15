@@ -25,7 +25,7 @@ class LibraryPage extends StatelessWidget {
         const LibraryListTiles(),
         const SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               'Recently Added',
               style: TextStyle(
@@ -37,7 +37,7 @@ class LibraryPage extends StatelessWidget {
         ),
         const RecentlyAddedSection(),
         const SliverPadding(
-          padding: const EdgeInsets.only(top: kBottomNavigationBarHeight + 5),
+          padding: EdgeInsets.only(top: kBottomNavigationBarHeight + 5),
         ),
       ],
     );
