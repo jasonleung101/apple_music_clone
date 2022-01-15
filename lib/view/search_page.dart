@@ -25,8 +25,16 @@ class SearchPage extends StatelessWidget {
                 onTap: () {
                   FocusManager.instance.primaryFocus?.unfocus();
                   Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context) => SearchDetailsPage(),
+                    PageRouteBuilder(
+                      pageBuilder: (c, a1, a2) => SearchDetailsPage(),
+                      transitionsBuilder: (c, anim, a2, child) =>
+                          SlideTransition(
+                              position: Tween(
+                                      begin: const Offset(0.0, 1.0),
+                                      end: const Offset(0.0, 0.0))
+                                  .animate(anim),
+                              child: child),
+                      transitionDuration: const Duration(milliseconds: 300),
                     ),
                   );
                 },

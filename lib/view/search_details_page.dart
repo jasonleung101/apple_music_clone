@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SearchDetailsPage extends StatelessWidget {
   SearchDetailsPage({Key? key}) : super(key: key);
 
-  final FocusNode _searchFocusNode = FocusNode();
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -28,7 +27,6 @@ class SearchDetailsPage extends StatelessWidget {
                       tag: 'search',
                       child: CupertinoSearchTextField(
                         controller: _searchController,
-                        focusNode: _searchFocusNode,
                         placeholder: "Artists, Songs, Lyrics and More",
                         autofocus: true,
                         onSubmitted: (value) async {
@@ -40,7 +38,6 @@ class SearchDetailsPage extends StatelessWidget {
                         onSuffixTap: () {
                           context.read<SearchCubit>().reInit();
                           _searchController.clear();
-                          _searchFocusNode.requestFocus();
                         },
                       ),
                     ),
