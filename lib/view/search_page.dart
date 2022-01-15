@@ -1,6 +1,7 @@
-import 'package:apple_music_clone/constant/color.dart';
 import 'package:apple_music_clone/view/search_details_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatelessWidget {
@@ -11,33 +12,86 @@ class SearchPage extends StatelessWidget {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        CupertinoSliverNavigationBar(
-          largeTitle: const Text("Search"),
+        const CupertinoSliverNavigationBar(
+          largeTitle: Text("Search"),
         ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Hero(
-                  tag: 'search',
-                  child: CupertinoSearchTextField(
-                    placeholder: "Artists, Songs, Lyrics and More",
-                    onTap: () {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      Navigator.of(context).push(
-                        CupertinoPageRoute(
-                          builder: (context) => SearchDetailsPage(),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Hero(
+              tag: 'search',
+              child: CupertinoSearchTextField(
+                placeholder: "Artists, Songs, Lyrics and More",
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                  Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (context) => SearchDetailsPage(),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),
+        const SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              'Browse Categories',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        const CategoriesGrid(),
+        const SliverPadding(
+          padding: EdgeInsets.only(top: kBottomNavigationBarHeight + 5),
+        ),
       ],
+    );
+  }
+}
+
+class CategoriesGrid extends StatelessWidget {
+  const CategoriesGrid({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      sliver: SliverGrid(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          childAspectRatio: 2,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            int _color = (math.Random().nextDouble() * 0xFFFFFF).toInt();
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Color(_color).withOpacity(1.0),
+              ),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    _color.toString(),
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+            );
+          },
+          childCount: 20,
+        ),
+      ),
     );
   }
 }

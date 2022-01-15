@@ -41,6 +41,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   intl: ^0.17.0
   carousel_slider: ^4.0.0
+  container_tab_indicator: ^0.3.0
 
 dev_dependencies:
   flutter_test:
