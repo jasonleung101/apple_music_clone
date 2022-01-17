@@ -9,7 +9,7 @@ class SearchCubit extends Cubit<SearchCubitState> {
   SearchCubit() : super(SearchCubitInitial());
 
   Future search(String term) async {
-    emit(SeachCubitLoading());
+    emit(SearchCubitLoading());
     try {
       SearchResult searchResult = await SearchServices.search(term);
       emit(SearchCubitLoaded(results: searchResult));

@@ -9,7 +9,7 @@ abstract class SearchCubitState extends Equatable {
 
 class SearchCubitInitial extends SearchCubitState {}
 
-class SeachCubitLoading extends SearchCubitState {}
+class SearchCubitLoading extends SearchCubitState {}
 
 class SearchCubitLoaded extends SearchCubitState {
   final SearchResult results;

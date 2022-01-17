@@ -105,7 +105,7 @@ class SearchDetailsPage extends StatelessWidget {
                         children: [
                           BlocBuilder<SearchCubit, SearchCubitState>(
                             builder: (context, state) {
-                              if (state is SeachCubitLoading) {
+                              if (state is SearchCubitLoading) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );
@@ -167,7 +167,6 @@ class SearchDetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-            const BottomNavBar(),
           ],
         ),
       ),
